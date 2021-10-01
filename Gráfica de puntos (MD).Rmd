@@ -1,0 +1,89 @@
+---
+title: "Gráfica de puntos (MD)"
+author: "Selene Muñoz"
+date: "1/10/2021"
+output: html_document
+---
+
+Instalando paquete con los datos
+install.packages("gapminder")
+
+Cargando paquete con los datos
+```{r}
+library(gapminder)
+```
+
+Cargando datos a entorno
+```{r}
+data("gapminder")
+```
+
+Filtrando por anio 2007
+```{r}
+gapminder2007 <- gapminder[gapminder$year == '2007', ]
+```
+
+Echando ojo a los datos
+```{r}
+head(gapminder2007)
+```
+
+Cargar libreria ggplot2
+```{r}
+library(ggplot2)
+```
+
+Hacer grafica de puntos con ggplot2
+```{r}
+ggplot(data = gapminder2007,
+       mapping = aes (x=gdpPercap,
+                      y=lifeExp))+
+  geom_point()
+```
+
+Probando diferentes colores
+```{r}
+ggplot(data = gapminder2007,
+       mapping = aes (x=gdpPercap,
+                      y=lifeExp,
+                      color=continent))+
+  geom_point()
+```
+
+Probando diferentes más aestetics
+```{r}
+ggplot(data = gapminder2007,
+       mapping = aes (x=gdpPercap,
+                      y=lifeExp,
+                      color=continent,
+                      shape=continent,
+                      size=pop))+
+  geom_point()
+```
+
+Colocando texto
+```{r}
+ggplot(data = gapminder2007,
+       mapping = aes (x=gdpPercap,
+                      y=lifeExp,
+                      color=continent,
+                      shape=continent,
+                      size=pop))+
+  geom_point() +
+  geom_text(label=gapminder2007$country,
+            color="black",
+            size=3)
+```
+
+Colocando lineas de regresion
+```{r}
+ggplot(data = gapminder2007,
+       mapping = aes (x=gdpPercap,
+                      y=lifeExp,
+                      color=continent))+
+  geom_point()+
+  geom_smooth(method = lm,
+              se=FALSE,
+              fullrange=TRUE)
+```
+

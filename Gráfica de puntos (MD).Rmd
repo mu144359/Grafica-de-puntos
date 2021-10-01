@@ -2,7 +2,9 @@
 title: "Gráfica de puntos (MD)"
 author: "Selene Muñoz"
 date: "1/10/2021"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 Instalando paquete con los datos
